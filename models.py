@@ -14,11 +14,9 @@ class User:
     @classmethod
     async def get(cls, id):
         query = users.select().where(users.c.id == id)
-        user = await db.fetch_one(query)
-        return user
+        return await db.fetch_one(query)
 
     @classmethod
     async def create(cls, **user):
         query = users.insert().values(**user)
-        user_id = await db.execute(query)
-        return user_id
+        return await db.execute(query)
